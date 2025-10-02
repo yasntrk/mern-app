@@ -26,3 +26,39 @@ exports.getAllJobs=async(req,res)=>{
         res.status(500).json({message:error.message});
     }
 }
+
+exports.fetchSingleJob=async(req,res)=>{
+    try {
+        const job=await Jobs.findById(req.params.id);
+        if(!job){
+            return res.status(404).json({message:"Job not found"});
+        }
+        res.status(200).json(job);    
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+}
+
+exports.updateJob=async(req,res)=>{
+    try {
+        const job=await Jobs.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        if(!job){
+            return res.status(404).json({message:"Job not found"});
+        }
+        res.status(200).json(job);    
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+}
+
+exports.deleteJob=async(req,res)=>{
+    try {
+        const job=await Jobs.findByIdAndDelete(req.params.id);
+        if(!job){
+            return res.status(404).json({message:"Job not found"});
+        }
+        res.status(200).json({message:"Job deleted successfully"});    
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+}
