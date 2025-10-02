@@ -3,5 +3,6 @@ const router = express.Router();
 
 router.use(require('./userRoute'));
 router.use(require('./pingRoute'));
+router.use(require('./jobRoute'));
 
 module.exports = router;
