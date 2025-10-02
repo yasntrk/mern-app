@@ -8,6 +8,6 @@ dotenv.config();
 app.use(express.json());
 connectionDB()
 app.use('/api', routes);
-app.listen(3011, () => {
+app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
